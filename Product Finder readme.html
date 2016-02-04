@@ -55,6 +55,11 @@ This mod was written for my site by a commercial developer as no equivalent was 
 <p>This version 0.91 is offered to help those who wish to implement something similar. Since it is working for me I have not had to bugfix it and so<strong> I don't know exactly how it works</strong>.</p>
 <p>It is offered to the community &quot;as is&quot; in the hope that others pick it up and iron-out any non-Zen-standard-practices that may lurk within.</p>
 <p>I have done what I can to remove any site-specific stuff and present something that is ready to go but apart from this readme I really cannot offer any support at all.</p>
+<h2>Notes:</h2>
+<p>27th January 2011<br />
+Product Finder Sidebox is a  reworked version of the Product Finder Mod. It was only with help from the Zen Cart support forums that I was able to convert this.<br /> 
+Product Finder Sidebox will likely conflict with Product Finder if used together. It uses many of the same files, and css styles. I attempted  to make it so there would not be any conflicts if both were for some reason implimented, I couldn't get it to work properly.</p> 
+<p class="warning">ALWAYS remember to back up, back up, back up. </p>
 <h2>What does this mod do?</h2>
 <p>This mod provides three drop-down select boxes which are used to select products from top category - subcat01 - subcat02 - subcat03.<br />
 The second and third drop-down are populated dynamically (using jquery) as a result of the choice made in the previous box, in my case this is used as Make-Model-Year.</p>
@@ -68,6 +73,11 @@ The second and third drop-down are populated dynamically (using jquery) as a res
 </blockquote>
 Each subcategory is a drop-down.
 <p>As supplied in this package, the drop drowns are integrated into the header.</p>
+<p><br />
+  This chart provided in the forums by Jerr may prove useful during setup of your categories - for a larger version, click on picture below or open zencart cat.jpg<br />
+  <br />
+  <a href="zencart cat.jpg"><img src="zencart cat.jpg" width="320" height="247" alt="zen category chart" /></a>
+</p>
 <h1>Why?</h1>
 <p>To replace a long static list in a sidebox.</p>
 <h2>How it works on my site</h2>
@@ -82,6 +92,16 @@ Each subcategory is a drop-down.
 <p><img src="product_finder_in_classic.gif" width="764" height="73" alt="how it looks" /></p>
 <p>and with javascript disabled</p>
 <p><img src="product_finder_in_classic_no_js.gif" width="763" height="76" alt="how it looks no javascript" /></p>
+<p>side box shows up like this</p>
+<p><img src="sidebox.gif" width="159" height="166" alt="sidebox with js" /></p>
+<p>and with javascript disabled</p>
+<p><img src="sidebox_no_js.gif" width="166" height="266" alt="sidebox no js" /></p>
+<h2>Configuration</h2>
+<p><strong>IMPORTANT</strong><br />You have to tell the code which top-level category to start from.</p>
+<p>In /includes/functions/extra_functions/product_finder_sidebox.php</p>
+<p>around line 56 look for</p>
+<p><span class="filename">function zen_get_category_tree($parent_id = '</span><span class="warning">99</span><span class="filename">', $category_tree_array = '') {</span></p>
+<p>The <span class="warning">99</span> is my top-level category, change it to yours.</p>
 <h2>Installation</h2>
 <p class="warning">BACKUP FILES AND DATABASE - DO NOT INSTALL ON A LIVE SITE!</p>
 <h3>File List</h3>
@@ -112,7 +132,7 @@ The files marked with the YOUR_TEMPLATE_NAME path need to go into your template 
 <p><span class="filename">function zen_get_category_tree($parent_id = '</span><span class="warning">3</span><span class="filename">', $category_tree_array = '') {</span></p>
 <p>The <span class="warning">3</span> is my top-level category, change it to yours.</p>
 <h2>How to test it</h2>
-<p>You will need a top-level category, then a sub 1, then a sub 2, then sub 3 and then an enabled product in sub 3.</p>
+<p>You will need a top-level category, then a sub 1, then a sub 2, then sub 3 and then an enabled product in sub 3. <i>Untill there is a product in (or linked to)sub 3 nothing will populate the drop down menus.</i></p>
 <p>Put the correct id for the top level category in </p>
 <p> /includes/functions/extra_functions/product_finder.php</p>
 <p>and the dropdowns should show the sub 1 - sub 2 - sub 3.</p>
@@ -137,6 +157,13 @@ RewriteRule ^(.*)$  http://www.YOURSITE.com/$1   [R] </p>
 <p>From the community only at<a href="http://www.zen-cart.com/forum/showthread.php?p=918403" target="_blank"> http://www.zen-cart.com/forum/showthread.php?p=918403</a></p>
 <p>-----------------------------------------------------------------------------------------------</p>
 <h2>Version History</h2>
+<p>v1.0 <br />
+integrated sidebox version by:
+<ul>
+  <li>Author: mikestaps, converted from Product Finder v0.91, originally developed by Terranetworks for torvista.</li>
+</ul>
+</p>
+
 <p>v0.92 <br />
   2011-01-27 added product_finder_sidebox folder<br />
   <ol>product_finder_sidebox folder includes:
