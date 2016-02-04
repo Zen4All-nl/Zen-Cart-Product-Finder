@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Product Finder 0.91</title>
+<style type="text/css">
+<!--
+body {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: .8em;
+	line-height: 1.1;
+	width:80%;
+	margin:1em auto;
+}
+h1 {
+	font-size: 1.3em;
+}
+h2 {
+	font-size: 1.2em;
+}
+h3 {
+	font-size: 1em;
+}
+.filename {
+	font-family: "Courier New", Courier, monospace;
+	font-weight: normal;
+	font-size: 1.1em;
+	line-height: 1.5;
+}
+
+li {
+	margin-bottom: 0.4em;
+}
+.innerlist {
+	list-style-type: lower-alpha;
+}
+.warning {
+	font-weight: bold;
+	color: #F00;
+}
+-->
+</style>
+</head>
+
+<body>
+<h1>Product Finder v0.91</h1>
+<p>License: GPL 2.0 as per included license.txt<br />
+Author: originally developed by Terranetworks for torvista.<br />
+Version: 0.91 2010-09-29<br />
+Support Thread: <a href="http://www.zen-cart.com/forum/showthread.php?p=918403" target="_blank">http://www.zen-cart.com/forum/showthread.php?p=918403</a><br />
+</p>
+<h2>Disclaimer</h2>
+<p>5th August 2010<br />
+This mod was written for my site by a commercial developer as no equivalent was available at the time as a community contribution.</p>
+<p>This version 0.91 is offered to help those who wish to implement something similar. Since it is working for me I have not had to bugfix it and so<strong> I don't know exactly how it works</strong>.</p>
+<p>It is offered to the community &quot;as is&quot; in the hope that others pick it up and iron-out any non-Zen-standard-practices that may lurk within.</p>
+<p>I have done what I can to remove any site-specific stuff and present something that is ready to go but apart from this readme I really cannot offer any support at all.</p>
+<h2>What does this mod do?</h2>
+<p>This mod provides three drop-down select boxes which are used to select products from top category - subcat01 - subcat02 - subcat03.<br />
+The second and third drop-down are populated dynamically (using jquery) as a result of the choice made in the previous box, in my case this is used as Make-Model-Year.</p>
+<p>The mod is designed to work with this category structure:<br />
+  <br />
+  top-category (eg Bikes) - </p>
+<blockquote>sub-category level 1 (eg Bike Manufacturer) -
+  <blockquote>subsub-category level 2 (eg Bike model) -
+    <blockquote>subsubsub-category level3 (eg Bike model year or year range) - which contains the products</blockquote>
+  </blockquote>
+</blockquote>
+Each subcategory is a drop-down.
+<p>As supplied in this package, the drop drowns are integrated into the header.</p>
+<h1>Why?</h1>
+<p>To replace a long static list in a sidebox.</p>
+<h2>How it works on my site</h2>
+<p>I have three master categories</p>
+<ol>
+  <li>Manufacturers: this is arranged as per the product families from my suppliers and are the master categories for all my products.</li>
+  <li>Product Types: the normal types-of-products categories. All items here are linked from the manufacturers master.</li>
+  <li>Your Bike (of motorcycle): subcategory of bike brands, then subsub of models, then subsubsub of years (such as 2001, 2002-3, 2004 etc). All items here are linked from the manufacturers master.</li>
+</ol>
+<p>This mod replaces the sidebox that would show the third set of categories.</p>
+<p>It shows up like this</p>
+<p><img src="product_finder_in_classic.gif" width="764" height="73" alt="how it looks" /></p>
+<p>and with javascript disabled</p>
+<p><img src="product_finder_in_classic_no_js.gif" width="763" height="76" alt="how it looks no javascript" /></p>
+<h2>Installation</h2>
+<p class="warning">BACKUP FILES AND DATABASE - DO NOT INSTALL ON A LIVE SITE!</p>
+<h3>File List</h3>
+<ul>
+  <li>/modellist.php <strong>- NEW</strong></li>
+  <li> /includes/functions/extra_functions/product_finder.php <strong>- NEW</strong></li>
+  <li>/includes/languages/english/extra_definitions/product_finder.php <strong>- NEW</strong></li>
+  <li> /includes/languages/spanish/extra_definitions/product_finder.php <strong>- NEW</strong></li>
+  <li>includes/templates/YOUR_TEMPLATE_NAME/buttons/english/go.jpg <strong>- NEW</strong></li>
+  <li>includes/templates/YOUR_TEMPLATE_NAME/buttons/spanish/go.png <strong>- NEW</strong></li>
+  <li> includes/templates/YOUR_TEMPLATE_NAME/common/tpl_header.php - <span class="warning">may overwrite an existing file, merge differences</span></li>
+  <li> includes/templates/YOUR_TEMPLATE_NAME/common/html_header.php - <span class="warning">may overwrite an existing file, merge differences</span></li>
+  <li> includes/templates/YOUR_TEMPLATE_NAME/css/style_product_finder.css <strong>- NEW</strong></li>
+  <li>includes/templates/YOUR_TEMPLATE_NAME/jscript/jscript_model_year.js <strong>- NEW</strong> - If you already use jquery  - you don't need this, see below.</li>
+  <li>includes/templates/YOUR_TEMPLATE_NAME/jscript/jquery-1.3.2.min.js <strong>- NEW</strong></li>
+</ul>
+<p>Copy the files into the correct directories.<br />
+The files marked with the YOUR_TEMPLATE_NAME path need to go into your template directories, NOT into directories literally called &quot;YOUR_TEMPLATE_NAME&quot;.</p>
+<p> tpl_header.php - contains the code chunk to display the new section.</p>
+<p> html_header.php - only contains one extra line to load the jquery:</p>
+<p class="filename"> &lt;script type=&quot;text/javascript&quot; src=&quot;&lt;?php echo $template-&gt;get_template_dir('.js',DIR_WS_TEMPLATE, $current_page_base,'jscript')?&gt;/jquery-1.3.2.min.js&quot;&gt;&lt;/script&gt;</p>
+<p>If you are already using jquery then you don't need this&nbsp;line, something similar should already be there..</p>
+<p>There are no database changes required.</p>
+<h2>Configuration</h2>
+<p>You have to tell the code which top-level category to start from.</p>
+<p>In /includes/functions/extra_functions/product_finder.php</p>
+<p>around line 56 look for</p>
+<p><span class="filename">function zen_get_category_tree($parent_id = '</span><span class="warning">3</span><span class="filename">', $category_tree_array = '') {</span></p>
+<p>The <span class="warning">3</span> is my top-level category, change it to yours.</p>
+<h2>How to test it</h2>
+<p>You will need a top-level category, then a sub 1, then a sub 2, then sub 3 and then an enabled product in sub 3.</p>
+<p>Put the correct id for the top level category in </p>
+<p> /includes/functions/extra_functions/product_finder.php</p>
+<p>and the dropdowns should show the sub 1 - sub 2 - sub 3.</p>
+<p>I have dropped these files directly into a copy of classic and it works as described.</p>
+<h2>Category Names</h2>
+<p>The category names should not contain ^ or | symbols. These are used as delimiters within the code.</p>
+<h2>A possible reason for it not working</h2>
+<p>This is the information provided by the developer which may explain why it may not work. I don't profess to understand what it actually mean so don't ask!</p>
+<p>AJAX<br />
+*************************************************************</p>
+<p>For the product finder to work, the site must work off one domain (either www or non-www), otherwise Ajax can't load the content. <br />
+  To force visitors to one domain, you can use the following .htaccess in the root of the site:</p>
+<p># We require wwww<br />
+  RewriteCond %{HTTP_HOST} !^www\.YOURSITE\.com$ [NC]<br />
+  RewriteRule ^(.*)$ http://www.YOURSITE.com/$1 [R=301,L]</p>
+<p>#If your site also has aliases, then you can use the following (for each alias): <br />
+  RewriteCond %{HTTP_HOST} ALIAS.com$   [NC] <br />
+RewriteRule ^(.*)$  http://www.YOURSITE.com/$1   [R] </p>
+<p>*************************************************************<br />
+</p>
+<p>Support</p>
+<p>From the community only at<a href="http://www.zen-cart.com/forum/showthread.php?p=918403" target="_blank"> http://www.zen-cart.com/forum/showthread.php?p=918403</a></p>
+<p>-----------------------------------------------------------------------------------------------</p>
+<h2>Version History</h2>
+<p>v0.92 <br />
+  2011-01-27 added product_finder_sidebox folder<br />
+  <ol>product_finder_sidebox folder includes:
+  	<li>all files needed to use product finder as a sidebox</li>
+    <li>seperate readme with examples of sidebox product finder</li></ol>
+<p>v0.91 2010-09-29</p>
+<ol>
+  <li>&lt;noscript&gt; GO buttons changed to both .gif (previously one was .jpg other was .png)</li>
+  <li>jscript_model_year.js changed to .php<br />
+  correction to show breadcrumb elements in the right order on the results page<br />
+  correction to maintain language when selection changed<br />
+  correction to allow use of commas in category descriptions</li>
+  <li>modellist.php, correction to allow use of commas in category descriptions</li>
+  <li>readme images changed to show classic template</li>
+  <li>css and layout improved to merge easier into classic template</li>
+</ol>
+<p>v0.9 <br />
+  2010-08-05 first upload to Zen Cart community<br />
+</p>
+</body>
+</html>
