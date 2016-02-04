@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Product Finder SideBox 1.0</title>
+<style type="text/css">
+<!--
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+	line-height: 1.1;
+	width:80%;
+	margin:1em auto;
+}
+h1 {
+	font-size: 1.3em;
+}
+h2 {
+	font-size: 1.2em;
+}
+h3 {
+	font-size: 1em;
+}
+.filename {
+	font-family: "Courier New", Courier, monospace;
+	font-weight: normal;
+	font-size: 1.1em;
+	line-height: 1.5;
+}
+
+li {
+	margin-bottom: 0.4em;
+}
+.innerlist {
+	list-style-type: lower-alpha;
+}
+.warning {
+	font-weight: bold;
+	color: #F00;
+}
+-->
+</style>
+</head>
+
+<body>
+<h1>Product Finder Sidebox v1.0</h1>
+<p>License: GPL 2.0 as per included license.txt<br />
+Author: mikestaps, converted from Product Finder v0.91, originally developed by Terranetworks for torvista.<br />
+Version: 1.0 2011-01-27<br />
+</p>
+<h1>Notes:</h1>
+<p>27th January 2011<br />
+Product Finder Sidebox is a  reworked version of the Product Finder Mod. It was only with help from the Zen Cart support forums that I was able to convert this.<br /> 
+Product Finder Sidebox will likely conflict with Product Finder if used together. It uses many of the same files, and css styles. I attempted  to make it so there would not be any conflicts if both were for some reason implimented, I couldn't get it to work properly.</p> 
+<p class="warning">ALWAYS remember to back up, back up, back up. </p>
+<h2>What does this mod do?</h2>
+<p>This mod provides three drop-down select boxes which are used to select products from top category - subcat01 - subcat02 - subcat03.<br />
+The second and third drop-down are populated dynamically (using jquery) as a result of the choice made in the previous box, in my case this is used as Make-Model-Year.</p>
+<p>The mod is designed to work with this category structure:<br />
+  <br />
+  top-category (eg Bikes) - </p>
+<blockquote>sub-category level 1 (eg Bike Manufacturer) -
+  <blockquote>subsub-category level 2 (eg Bike model) -
+    <blockquote>subsubsub-category level3 (eg Bike model year or year range) - which contains the products</blockquote>
+  </blockquote>
+</blockquote>
+<p>Each subcategory is a drop-down. </p>
+<p><br />
+  This chart provided in the forums by Jerr may prove useful during setup of your categories - for a larger version, click on picture below or open zencart cat.jpg<br />
+  <br />
+  <a href="zencart cat.jpg"><img src="zencart cat.jpg" width="320" height="247" alt="zen category chart" /></a>
+</p>
+<h1>Why?</h1>
+<p>To replace a long static list in a sidebox.</p>
+<h2>How it works on my site</h2>
+<p>I have two master categories</p>
+<ol>
+  <li>Make: subcategory of bike brands, then subsub of models (inside each of the bike brands), then subsubsub of years (such as 2001, 2002-3, 2004 etc, inside each of the models).<br />
+  All items here are linked from the products master.</li>
+  <li>Products:This is where all products are stored.</li>
+</ol>
+<p>It shows up like this</p>
+<p><img src="sidebox.gif" width="159" height="166" alt="sidebox with js" /></p>
+<p>and with javascript disabled</p>
+<p><img src="sidebox_no_js.gif" width="166" height="266" alt="sidebox no js" /></p>
+<h2>Configuration</h2>
+<p><strong>IMPORTANT</strong><br />You have to tell the code which top-level category to start from.</p>
+<p>In /includes/functions/extra_functions/product_finder_sidebox.php</p>
+<p>around line 56 look for</p>
+<p><span class="filename">function zen_get_category_tree($parent_id = '</span><span class="warning">99</span><span class="filename">', $category_tree_array = '') {</span></p>
+<p>The <span class="warning">99</span> is my top-level category, change it to yours.</p>
+<h2>Installation</h2>
+<p class="warning">BACKUP FILES AND DATABASE - DO NOT INSTALL ON A LIVE SITE!</p>
+<h3>File List - FOR SIDEBOX USE</h3>
+<ul>
+  <li>/modellist.php <strong>- NEW</strong></li>
+  <li> /includes/functions/extra_functions/product_finder_sidebox.php <strong>- NEW</strong></li>
+  <li>/includes/languages/english/extra_definitions/product_finder_sidebox.php <strong>- NEW</strong></li>
+  <li>/includes/modules/sideboxes/YOUE_TEMPLATE_NAME/product_finder_sidebox.php <strong>- NEW</strong></li>
+  <li>includes/templates/YOUR_TEMPLATE_NAME/buttons/english/go.jpg <strong>- NEW</strong></li>
+  <li> includes/templates/YOUR_TEMPLATE_NAME/common/html_header.php - <span class="warning">may overwrite an existing file, merge differences</span></li>
+  <li> includes/templates/YOUR_TEMPLATE_NAME/css/stylesheet_product_finder_sidebox.css <strong>- NEW</strong> - or add contents to the bottom of &nbsp; /includes/templates/YOUR_TEMPLATE_NAME/css/stylesheet.css</li>
+  <li>includes/templates/YOUR_TEMPLATE_NAME/jscript/jscript_model_year.js <strong>- NEW</strong> - If you already use jquery  - you don't need this, see below.</li>
+  <li>includes/templates/YOUR_TEMPLATE_NAME/jscript/jquery-1.3.2.min.js <strong>- NEW</strong></li>
+  <li>includes/templates/YOUR_TEMPLATE_NAME/sideboxes/tpl_product_finder_sidebox.php <strong>- NEW</strong></li>
+</ul>
+<br /><strong>IMPORTANT</strong> <br />Rename all folders with the name YOUR_TEMPLATE_NAME to your actual template name&hellip;</p> 
+<p>Copy the files into the correct directories. File placement is correct if you drop all files from the FILES folder into your store directory.<br />
+<p> html_header.php - only contains one extra line to load the jquery:</p>
+<p class="filename"> &lt;script type=&quot;text/javascript&quot; src=&quot;&lt;?php echo $template-&gt;get_template_dir('.js',DIR_WS_TEMPLATE, $current_page_base,'jscript')?&gt;/jquery-1.3.2.min.js&quot;&gt;&lt;/script&gt;</p>
+<p>If you are already using jquery then you don't need this&nbsp;line, something similar should already be there..</p>
+<p>There are no database changes required.</p>
+<p>After install you will see the new sidebox appear in your tools -&gt;Layout boxes controller in the store admin. You can turn on/off the sidebox and determine the position from there.</p>
+<h2>How to test it</h2>
+<p>You will need a top-level category, then a sub 1, then a sub 2, then sub 3 and then an enabled product in sub 3. <i>Untill there is a product in (or linked to)sub 3 nothing will populate the drop down menus.</i></p>
+<p>Put the correct id for the top level category in </p>
+<p> /includes/functions/extra_functions/product_finder.php</p>
+<p>and the dropdowns should show the sub 1 - sub 2 - sub 3.</p>
+<h2>Category Names</h2>
+<p>The category names should not contain ^ or | symbols. These are used as delimiters within the code.</p>
+<h2><br />
+</h2>
+</body>
+</html>
