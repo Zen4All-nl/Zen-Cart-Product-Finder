@@ -7,9 +7,9 @@
  */
 require('includes/application_top.php');
 
-$dd_cPath=$_REQUEST['dd_cPath'];//the id of the category selected and submitted by the change in the dropdown
+$dd_cPath = $_POST['dd_cPath'];//the id of the category selected and submitted by the change in the dropdown
 
-if ($_REQUEST['dd_cPath']!="") {
+if ($_POST['dd_cPath']!="") {
 
   $product_to_categories_query = "select distinct categories_id from " . TABLE_PRODUCTS_TO_CATEGORIES;
   $product_c_result = $db->Execute($product_to_categories_query);
@@ -70,6 +70,7 @@ if ($_REQUEST['dd_cPath']!="") {
     }
     $expected->MoveNext();
   }
-  if ($count == 1)
+  if ($count == 1) {
     echo $ids . '|' . $name;
+  }
 }
