@@ -11,7 +11,9 @@ function pf_get_category_tree($parent_id) {
 
   $category_tree_array[] = array('id' => '0', 'text' => PF_TEXT_PLEASE_SELECT);
 
-if (!$parent_id) return $category_tree_array;//return if $parent_id not set
+if (!$parent_id){
+  return $category_tree_array;//return if $parent_id not set
+}
 
 if ($parent_id != '0') {
   $categories = $db->Execute("SELECT c.categories_id, cd.categories_name, c.parent_id
@@ -23,8 +25,7 @@ if ($parent_id != '0') {
                               ORDER BY cd.categories_name");
 
   while (!$categories->EOF) {
-      $category_tree_array[] = array('id' => $categories->fields['categories_id'], 'text' => $categories->fields['categories_name']);
-
+    $category_tree_array[] = array('id' => $categories->fields['categories_id'], 'text' => $categories->fields['categories_name']);
     $categories->MoveNext();
   }
 }
