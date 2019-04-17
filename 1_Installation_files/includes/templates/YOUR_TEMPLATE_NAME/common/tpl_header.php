@@ -106,8 +106,10 @@ if (!isset($flag_disable_header) || !$flag_disable_header) {
 <!--eof-header ezpage links-->
 </div>
 <!-- BOF Product Finder -->
-<?php if (defined('PRODUCT_FINDER_ENABLE') && PRODUCT_FINDER_ENABLE == 'true') { ?>
-<?php require ($template->get_template_dir('tpl_product_finder.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_product_finder.php'); ?>
-<?php } ?>
+  <?php
+  if (defined('PRODUCT_FINDER_ENABLE') && PRODUCT_FINDER_ENABLE == 'true') {
+    require ($template->get_template_dir('tpl_product_finder.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_product_finder.php');
+  }
+  ?>
 <!-- EOF Product Finder -->
 <?php } ?>
