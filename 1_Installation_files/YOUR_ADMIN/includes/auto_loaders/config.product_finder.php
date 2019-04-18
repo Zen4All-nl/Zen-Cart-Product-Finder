@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package functions
  * @copyright Copyright 2003-2014 Zen Cart Development Team
@@ -8,7 +9,7 @@
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
-} 
+}
 
 $autoLoadConfig[999][] = array(
   'autoType' => 'init_script',
