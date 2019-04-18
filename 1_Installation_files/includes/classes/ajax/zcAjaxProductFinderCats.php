@@ -36,11 +36,10 @@ class zcAjaxProductFinderCats extends base {
       $categories_array = array();
       foreach ($productToCategories as $result) {
         $categories_array[] = $result['categories_id'];
-        $categories_array1[] = $result['categories_name'];
-        $categories_array2[] = $result['parent_id'];
+        $categories_array1[] = $result['parent_id'];
       }
 
-      $categories = "SELECT c.categories_id, cd.categories_name, c.parent_id
+      $categoriesQuery = "SELECT c.categories_id, cd.categories_name, c.parent_id
                      FROM " . TABLE_CATEGORIES . " c
                      INNER JOIN " . TABLE_CATEGORIES_DESCRIPTION . " cd ON cd.categories_id = c.categories_id
                      AND c.categories_status = 1
@@ -48,33 +47,19 @@ class zcAjaxProductFinderCats extends base {
                      AND c.parent_id = " . $dd_cPath . "
                      ORDER BY cd.categories_name";
 
-      $expected = $db->Execute($categories);
-      $ids = '';
-      $name = '';
-      $count = 0;
-      while (!$expected->EOF) {
-        if (in_array($expected->fields['categories_id'], $categories_array2) || in_array($expected->fields['categories_id'], $categories_array)) {
-          if ($count == 0) {
-            $ids = '^';
-            $name = '^';
-          }
-          $ids .= $expected->fields['categories_id'] . '^';
-          $name .= $expected->fields['categories_name'] . '^';
-          $count = 1;
+      $categories = $db->Execute($categoriesQuery);
+      $valuesArray = array();
+      foreach ($categories as $category) {
+        if (in_array($category['categories_id'], $categories_array1) || in_array($category['categories_id'], $categories_array)) {
+          $valuesArray[] = [
+            'id' => $category['categories_id'],
+            'name' => $category['categories_name']
+            ];
         }
-        $expected->MoveNext();
-      }
-      if ($count == 1) {
-        $values = $ids . '|' . $name;
       }
     }
     return([
-      'categories_array' => $categories_array,
-      'categories_array2' => $categories_array2,
-      'cats' => $expected,
-      'data' => $dd_cPath,
-      'values' => $values
+      'valuesArray' => $valuesArray
     ]);
   }
-
 }
