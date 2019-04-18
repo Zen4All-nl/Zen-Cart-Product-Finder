@@ -28,7 +28,7 @@
           $('#pf_dd2').append('<option value="-1"><?php echo PF_TEXT_PLEASE_SELECT; ?><\/option>');
           $('#cPath').append('<option value="-1"><?php echo PF_TEXT_PLEASE_SELECT; ?></option>');
           for (let i = 0; i < data.valuesArray.length; i++) {
-              $('#pf_dd2').append('<option> value="' + data.valuesArray[i].id + '">' + data.valuesArray[i].name + '</option>');
+              $('#pf_dd2').append('<option value="' + data.valuesArray[i].id + '">' + data.valuesArray[i].name + '</option>');
           }
       });
   }
