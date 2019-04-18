@@ -47,7 +47,7 @@ $pf_category_depth = PRODUCT_FINDER_CATEGORY_DEPTH; //USER defined base category
           }
           ?>
         <span id="pf_title"><?php echo PF_TEXT_TITLE; ?></span>
-        <span class="pf_selectbox_name"><label for="pf_dd1"><?php echo PF_TEXT_DD1; ?></label></span>
+        <span class="pf_selectbox_name"><?php echo zen_draw_label(PF_TEXT_DD1, 'pf_dd1'); ?></span>
         <?php $pf_dd1_array = pf_get_category_tree((int)$pf_base_category); ?>
         <?php echo zen_draw_pull_down_menu('pf_dd1', $pf_dd1_array, $pf_dd1_selected, 'id="pf_dd1" class="pf_selectbox_text"'); ?>
       </li>
@@ -64,7 +64,7 @@ $pf_category_depth = PRODUCT_FINDER_CATEGORY_DEPTH; //USER defined base category
             $pf_dd2_selected = $pf_cPaths['2'];
           }
           ?>
-        <span class="pf_selectbox_name"><label for="pf_dd2"><?php echo PF_TEXT_DD2; ?></label></span>
+        <span class="pf_selectbox_name"><?php echo zen_draw_label(PF_TEXT_DD2, 'pf_dd2'); ?></span>
         <?php $pf_dd2_array = pf_get_category_tree((int)$pf_dd1_selected); ?>
         <?php echo zen_draw_pull_down_menu('pf_dd2', $pf_dd2_array, $pf_dd2_selected, 'id="pf_dd2" class="pf_selectbox_text"'); ?>
       </li>
@@ -74,7 +74,7 @@ $pf_category_depth = PRODUCT_FINDER_CATEGORY_DEPTH; //USER defined base category
         </noscript>
       </li>
       <li>
-        <span class="pf_selectbox_name"><label for="cPath"><?php echo PF_TEXT_DD3; ?></label></span>
+        <span class="pf_selectbox_name"><?php echo zen_draw_label(PF_TEXT_DD3, 'pf_dd3'); ?></span>
         <?php
         $pf_dd3_array = pf_get_category_tree((int)$pf_dd2_selected); //build the array of subcategories
         $pf_dd3_array[0]['id'] = '';

@@ -10,68 +10,51 @@
 <script type="text/javascript">
 
   $(document).ready(function () {
-      $("#pf_dd1").change(dropdown2);
-      $("#pf_dd2").change(dropdown3);
-      //$("#select_year").focus();
-      $("#cPath").change(function () {
-          var pf_base_category = document.getElementById("pf_base_category").value;
-          var cPath1 = $("#pf_dd1").val();
-          var cPath2 = $("#pf_dd2").val();
-          var cPath3 = $("#cPath").val();
-          $('#productFinderform').attr('action', "index.php?main_page=index&cPath=" + pf_base_category + "_" + cPath1 + "_" + cPath2 + "_" + cPath3);
-          $('#productFinderform').attr('method', "post");
-          $('#productFinderform').submit();
-
-      });
+      $('#pf_dd1').change(drop_down2);
+      $('#pf_dd2').change(drop_down3);
+      $('#cPath').change(cpath);
   });
 
-  var dropdown2 = function drop_down2() {
-      var dd1 = document.getElementById("pf_dd1").value;
+  function drop_down2() {
+      var dd1 = $('#pf_dd1').val();
       zcJS.ajax({
           url: 'ajax.php?act=ajaxProductFinderCats&method=getCategories',
           data: {
               'dd_cPath': dd1
           }
       }).done(function (data) {
-        console.log(data);
-          if (data != '') {
-              arrayVar = new Array();
-              arrayVar = data.values.split("|");
-              arrayVarId = new Array();
-              arrayVarId = arrayVar[0].split("^");
-              arrayVarName = new Array();
-              arrayVarName = arrayVar[1].split("^");
-              $('#pf_dd2').html("");
-              $('#pf_dd2').append("<option value=''><?php echo PF_TEXT_PLEASE_SELECT; ?><\/option>");
-              for (i = 1; i < arrayVarId.length - 1; i++) {
-                  $('#pf_dd2').append($("<option><\/option>").prop("value", arrayVarId[i]).text(arrayVarName[i]));
-              }
+          $('#pf_dd2').empty();
+          $('#cPath').empty();
+          $('#pf_dd2').append('<option value="-1"><?php echo PF_TEXT_PLEASE_SELECT; ?><\/option>');
+          $('#cPath').append('<option value="-1"><?php echo PF_TEXT_PLEASE_SELECT; ?></option>');
+          for (let i = 0; i < data.valuesArray.length; i++) {
+              $('#pf_dd2').append('<option> value="' + data.valuesArray[i].id + '">' + data.valuesArray[i].name + '</option>');
           }
       });
-  };
-  var dropdown3 = function drop_down3() {
-      var dd2 = document.getElementById("pf_dd2").value;
+  }
+  function drop_down3() {
+      var dd2 = $('#pf_dd2').val();
       zcJS.ajax({
           url: 'ajax.php?act=ajaxProductFinderCats&method=getCategories',
           data: {
               'dd_cPath': dd2
           }
       }).done(function (data) {
-        console.log(data);
-          if (data != '') {
-              arrayVar = new Array();
-              arrayVar = data.values.split("|");
-              arrayVarId = new Array();
-              arrayVarId = arrayVar[0].split("^");
-              arrayVarName = new Array();
-              arrayVarName = arrayVar[1].split("^");
-              $('#cPath').html("");
-              $('#cPath').append("<option value=''><?php echo PF_TEXT_PLEASE_SELECT; ?><\/option>");
-
-              for (i = 1; i < arrayVarId.length - 1; i++) {
-                  $('#cPath').append($("<option><\/option>").prop("value", arrayVarId[i]).text(arrayVarName[i]));
-              }
+          $('#cPath').empty();
+          $('#cPath').append('<option value="-1"><?php echo PF_TEXT_PLEASE_SELECT; ?></option>');
+          for (let i = 0; i < data.valuesArray.length; i++) {
+              $('#cPath').append('<option value="' + data.valuesArray[i].id + '">' + data.valuesArray[i].name + '</option>');
           }
       });
-  };
+  }
+  function cpath() {
+      var pf_base_category = $('#pf_base_category').val();
+      var cPath1 = $('#pf_dd1').val();
+      var cPath2 = $('#pf_dd2').val();
+      var cPath3 = $('#cPath').val();
+      $('#productFinderform').attr('action', 'index.php?main_page=index&cPath=' + pf_base_category + '_' + cPath1 + '_' + cPath2 + '_' + cPath3);
+      $('#productFinderform').attr('method', 'post');
+      $('#productFinderform').submit();
+
+  }
 </script>

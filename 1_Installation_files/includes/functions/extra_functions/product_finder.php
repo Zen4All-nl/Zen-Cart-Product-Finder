@@ -10,7 +10,7 @@ function pf_get_category_tree($parent_id)
   global $db;
 
   $category_tree_array[] = array(
-    'id' => '0',
+    'id' => '-1',
     'text' => PF_TEXT_PLEASE_SELECT
   );
 
