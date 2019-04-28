@@ -28,7 +28,7 @@ if (!zen_page_key_exists($admin_page)) {
 /*
  * For adding a configuration value
  */
-$db->Execute("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_group_id, configuration_key, configuration_title, configuration_value, configuration_description, sort_order, set_function)
+$db->Execute("INSERT IGNORE INTO " . TABLE_CONFIGURATION . " (configuration_group_id, configuration_key, configuration_title, configuration_value, configuration_description, sort_order, set_function)
               VALUES (" . (int)$configuration_group_id . ", 'PRODUCT_FINDER_ENABLE', 'Enable Product Finder', 'false', 'Enable / disable Product Finder', 1, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
                      (" . (int)$configuration_group_id . ", 'PRODUCT_FINDER_PARENT_ID', 'Top-level category', '', 'Enter a category id to tell the code which top-level category to start from.', 2, NULL),
                      (" . (int)$configuration_group_id . ", 'PRODUCT_FINDER_CATEGORY_DEPTH', 'Top-level category', '', 'Enter a category id to tell the code which top-level category to start from.', 3, NULL);");
