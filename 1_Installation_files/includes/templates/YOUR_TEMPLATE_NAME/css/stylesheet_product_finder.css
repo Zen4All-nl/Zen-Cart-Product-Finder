@@ -1,0 +1,54 @@
+#product_finder_wrapper {/*using a wrapper and inner div to use two different background images*/
+  margin:0 auto;
+  background-color: #363;
+  height: 41px;
+  padding:10px 0 0 0;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: white;
+  overflow: hidden;
+}
+#product_finder {
+
+  height:41px;
+  padding:6px 0 0 0;
+  font-weight:bold;
+  background-color: #CCC;
+  white-space: nowrap;
+}
+#product_finder form{
+  margin:0;
+  padding:0;
+}
+#product_finder ul {
+  width:100%;
+  margin:0;
+  padding:0;
+  line-height:30px;/*same as #product_finder to vertically-align list*/
+  text-align:center;
+}
+#product_finder ul li {
+  display:inline;
+  list-style:none;
+}
+#product_finder ul li noscript input {
+  vertical-align:middle;/*not perfect..*/
+}
+#pf_title {/*"Show Products for..."*/
+  font-weight:bold;
+  font-family:arial;
+  font-size:14px;
+  margin-right:5px;
+}
+.pf_selectbox_name label{/*text in front of drop-down select box*/
+  font-weight:bold;
+  font-family:arial;
+  font-size:13px;
+  margin-right:2px;/*space beween the drop-down name and the drop-down box*/
+}
+.pf_selectbox_text {/*text of select box*/
+  padding:1px;
+  border: 2px solid #949494;
+  font-size:12px;
+  width: auto;
+}
