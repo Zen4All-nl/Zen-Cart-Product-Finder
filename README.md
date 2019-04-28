@@ -14,11 +14,6 @@ subsubsub-category level3 (eg Bike model year or year range) - which contains th
 Each subcategory is a drop-down.
 As supplied in this package, the drop drowns are integrated into the header.
 
-
-This chart provided in the forums by Jerr may prove useful during setup of your categories - for a larger version, click on picture below or open zencart cat.jpg
-
-zen category chart
-
 ## Why?
 To replace a long static list in a sidebox.
 
