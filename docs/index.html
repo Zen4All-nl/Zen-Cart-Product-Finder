@@ -6,12 +6,19 @@
     <title>Product Finder 1.0.0</title>
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
   </head>
   <body>
     <div class="container-fluid">
       <div class="card bg-light">
         <div class="card-header">
           <h1 class="card-title">Product Finder</h1>
+          <div class="pos_rel">
+            <div id="downloads">
+              <a class="zip_download_link" href="https://github.com/Zen4All-nl/Zen-Cart-Product-Finder/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Zen4All-nl/Zen-Cart-Product-Finder/tarball/master">Download this project as a tar.gz file</a>
+            </div>
+          </div>
         </div>
         <div class="card-body">
           <ul class="nav nav-tabs" id="Tab" role="tablist">
@@ -32,6 +39,10 @@
             </li>
           </ul>
           <div class="tab-content" id="TabContent">
+            <div class="text-right">
+              <a href="http://www.zen-cart.com/forum/showthread.php?p=918403" title="Support Thread" target="_blank" class="btn btn-info" role="button">Support Thread</a>
+              <a href="https://github.com/Zen4All-nl/Zen-Cart-Product-Finder" title="View on GitHub" target="_blank" class="btn btn-info" role="button">View on GitHub <i class="fa fa-github fa-lg"></i></a>
+            </div>
             <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
               <h2>What does this mod do?</h2>
               <p>This mod provides three drop-down select boxes which are used to select products from top category - subcat01 - subcat02 - subcat03.<br />
@@ -49,7 +60,7 @@
               <p><br />
                 This chart provided in the forums by Jerr may prove useful during setup of your categories - for a larger version, click on picture below or open zencart cat.jpg<br />
                 <br />
-                <a href="zencart cat.jpg"><img src="images/zencart cat.jpg" width="320" height="247" alt="zen category chart" /></a>
+                <a href="images/zencart_cat.jpg" target="_blank"><img src="images/zencart_cat.jpg" width="320" height="247" alt="zen category chart" title="zen category chart"></a>
               </p>
               <h3>Why?</h3>
               <p>To replace a long static list in a sidebox.</p>
@@ -72,36 +83,366 @@
             </div>
             <div class="tab-pane fade" id="installation" role="tabpanel" aria-labelledby="installation-tab">
               <h2>Installation</h2>
-              <p class="warning">BACKUP FILES AND DATABASE - DO NOT INSTALL ON A LIVE SITE!</p>
-              <h3>File List</h3>
-              <ul>
-                <li>/modellist.php <strong>- NEW</strong></li>
-                <li> /includes/functions/extra_functions/product_finder.php <strong>- NEW</strong></li>
-                <li>/includes/languages/english/extra_definitions/product_finder.php <strong>- NEW</strong></li>
-                <li> /includes/languages/spanish/extra_definitions/product_finder.php <strong>- NEW</strong></li>
-                <li>includes/templates/YOUR_TEMPLATE_NAME/buttons/english/go.jpg <strong>- NEW</strong></li>
-                <li>includes/templates/YOUR_TEMPLATE_NAME/buttons/spanish/go.png <strong>- NEW</strong></li>
-                <li> includes/templates/YOUR_TEMPLATE_NAME/common/tpl_header.php - <span class="warning">may overwrite an existing file, merge differences</span></li>
-                <li> includes/templates/YOUR_TEMPLATE_NAME/common/html_header.php - <span class="warning">may overwrite an existing file, merge differences</span></li>
-                <li> includes/templates/YOUR_TEMPLATE_NAME/css/style_product_finder.css <strong>- NEW</strong></li>
-                <li>includes/templates/YOUR_TEMPLATE_NAME/jscript/jscript_model_year.js <strong>- NEW</strong> - If you already use jquery  - you don't need this, see below.</li>
-                <li>includes/templates/YOUR_TEMPLATE_NAME/jscript/jquery-1.3.2.min.js <strong>- NEW</strong></li>
+              <ul class="nav nav-tabs" id="TabInstallation" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="new-install-tab" data-toggle="tab" href="#new-install" role="tab" aria-controls="new-install" aria-selected="true">New install</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="upgrade-tab" data-toggle="tab" href="#upgrade" role="tab" aria-controls="upgrade" aria-selected="false">Upgrade</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="un-install-tab" data-toggle="tab" href="#un-install" role="tab" aria-controls="un-install" aria-selected="false">Un-install</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="file-list-tab" data-toggle="tab" href="#file-list" role="tab" aria-controls="file-list" aria-selected="false">File List</a>
+                </li>
               </ul>
-              <p>Copy the files into the correct directories.<br />
-                The files marked with the YOUR_TEMPLATE_NAME path need to go into your template directories, NOT into directories literally called &quot;YOUR_TEMPLATE_NAME&quot;.</p>
-              <p> tpl_header.php - contains the code chunk to display the new section.</p>
-              <p> html_header.php - only contains one extra line to load the jquery:</p>
-              <p class="filename"> &lt;script type=&quot;text/javascript&quot; src=&quot;&lt;?php echo $template-&gt;get_template_dir('.js',DIR_WS_TEMPLATE, $current_page_base,'jscript')?&gt;/jquery-1.3.2.min.js&quot;&gt;&lt;/script&gt;</p>
-              <p>If you are already using jquery then you don't need this&nbsp;line, something similar should already be there..</p>
-              <p>There are no database changes required.</p>
+              <div class="tab-content" id="TabInstallationContent">
+                <div class="tab-pane fade show active" id="new-install" role="tabpanel" aria-labelledby="new-install-tab">
+                  <h3>New install</h3>
+                  <p><strong>BACKUP FILES AND DATABASE</strong></p>
+                  <p>Copy the files into the correct directories.<br />
+                    The files marked with the YOUR_TEMPLATE_NAME path need to go into your template directories, NOT into directories literally called &quot;YOUR_TEMPLATE_NAME&quot;.</p>
+                  <p> tpl_header.php - contains the code chunk to display the new section.</p>
+                  <p>There are some database changes these will auto install as soon as you log in to your admin.</p>
+                </div>
+                <div class="tab-pane fade" id="upgrade" role="tabpanel" aria-labelledby="upgrade-tab">
+                  <h3>Upgrade</h3>
+                  <p>When upgrading from a previous version, please use the flie list as a guide to see which file have been changed. Afte aplying the file changes, log in to your Zen Cart admin, to complete the installation. The database changes, if needed, will be executed automatically</p>
+                </div>
+                <div class="tab-pane fade" id="un-install" role="tabpanel" aria-labelledby="un-install-tab">
+                  <h3>Un-install</h3>
+                  <p>Use the file list to remove all the files, and changes made for this mod. Then log in to your Zen Cart Admin, and run the product_finder_uninstall.sql (found in the uninstall folder) in Admin=>Tools=>Install SQL Patches</p>
+                </div>
+                <div class="tab-pane fade" id="file-list" role="tabpanel" aria-labelledby="file-list-tab">
+                  <h3>File List</h3>
+                  <table class="dc" cellspacing="0" cellpadding="0">
+                    <thead>
+                      <tr class="SectionAll">
+                        <th class="DirItemHeader">Version 0.92</th>
+                        <th class="DirItemHeader"></th>
+                        <th class="DirItemHeader">Version 1.0.0</th>
+                        <th class="DirItemHeader">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="SectionBegin">
+                        <td class="DirItemDefault"><i class="fa fa-folder-open DirOrphanOlderExpanded"></i> includes</td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><i class="fa fa-folder-open DirNewerOrphanExpanded"></i> includes</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">│</span></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">├</span><i class="fa fa-folder-open DirOrphanExpanded"></i> classes</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">│&nbsp;&nbsp;</span></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">│└</span><i class="fa fa-folder-open DirOrphanExpanded"></i> ajax</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">│&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemOrphan"><span class="text-black">│&nbsp;&nbsp;└</span>zcAjaxProductFinderCats.php</td>
+                        <td class="DirItemDefault">New (replaces modellist.php)</td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">├</span><i class="fa fa-folder-open DirOlderExpanded"></i> functions</td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">├</span><i class="fa fa-folder-open DirNewerExpanded"></i> functions</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">│└</span><i class="fa fa-folder-open DirOlderExpanded"></i> extra_functions</td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">│└</span><i class="fa fa-folder-open DirNewerExpanded"></i> extra_functions</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemOlder"><span class="text-black">│&nbsp;&nbsp;└</span>product_finder.php</td>
+                        <td class="DirItemDefault"><img src="images/ContentDifferent.png" width="28" height="16" alt="<CC>" align="middle"></td>
+                        <td class="DirItemNewer"><span class="text-black">│&nbsp;&nbsp;└</span>product_finder_functions.php</td>
+                        <td class="DirItemDefault">Renamed, Code changes</td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">├</span><i class="fa fa-folder-open DirOrphanOlderExpanded"></i> languages</td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">├</span><i class="fa fa-folder-open DirNewerExpanded"></i> languages</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">│├</span><i class="fa fa-folder-open DirOlderExpanded"></i> english</td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">│└</span><i class="fa fa-folder-open DirNewerExpanded"></i> english</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">││└</span><i class="fa fa-folder-open DirOlderExpanded"></i> extra_definitions</td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">│&nbsp;&nbsp;└</span><i class="fa fa-folder-open DirNewerExpanded"></i> extra_definitions</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemOlder"><span class="text-black">││&nbsp;&nbsp;└</span>product_finder.php</td>
+                        <td class="DirItemDefault"><img src="images/ContentDifferent.png" width="28" height="16" alt="<CC>" align="middle"></td>
+                        <td class="DirItemNewer"><span class="text-black">│&nbsp;&nbsp;&nbsp;&nbsp;└</span>product_finder.php</td>
+                        <td class="DirItemDefault">Renamed, Code changes</td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">│└</span><i class="fa fa-folder-open DirOrphanExpanded"></i> spanish</td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">│&nbsp;&nbsp;</span></td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">│&nbsp;&nbsp;└</span><i class="fa fa-folder-open DirOrphanExpanded"></i> extra_definitions</td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">│&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemOrphan"><span class="text-black">│&nbsp;&nbsp;&nbsp;&nbsp;└</span>product_finder.php</td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+                        <td class="DirItemDefault">Deleted</td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">│</span></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">├</span><i class="fa fa-folder-open DirOrphanExpanded"></i> modules</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">│&nbsp;&nbsp;</span></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">│└</span><i class="fa fa-folder-open DirOrphanExpanded"></i> sideboxes</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">│&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemOrphan"><span class="text-black">│&nbsp;&nbsp;└</span>product_finder.php</td>
+                        <td class="DirItemDefault">New</td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">└</span><i class="fa fa-folder-open DirOrphanOlderExpanded"></i> templates</td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">└</span><i class="fa fa-folder-open DirNewerOrphanExpanded"></i> templates</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;└</span><i class="fa fa-folder-open DirOrphanOlderExpanded"></i> YOUR_TEMPLATE_NAME</td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;└</span><i class="fa fa-folder-open DirNewerOrphanExpanded"></i> YOUR_TEMPLATE_NAME</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;├</span><i class="fa fa-folder-open DirOrphanExpanded"></i> buttons</td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;├</span><i class="fa fa-folder-open DirSameExpanded"></i> buttons</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;│├</span><i class="fa fa-folder-open DirSameExpanded"></i> english</td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;│└</span><i class="fa fa-folder-open DirSameExpanded"></i> english</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemSame"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;││└</span>go.gif</td>
+                        <td class="DirItemDefault"><img src="images/ContentSame.png" width="28" height="16" alt="<CC>" align="middle"></td>
+                        <td class="DirItemSame"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;└</span>go.gif</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;│└</span><i class="fa fa-folder-open DirOrphanExpanded"></i> spanish</td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;</span></td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemOrphan"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;└</span>go.gif</td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+                        <td class="DirItemDefault">Deleted</td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;├</span><i class="fa fa-folder-open DirOrphanOlderExpanded"></i> common</td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;├</span><i class="fa fa-folder-open DirNewerExpanded"></i> common</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemOrphan"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;│├</span>html_header.php</td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;││</span></td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemOlder"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;│└</span>tpl_header.php</td>
+                        <td class="DirItemDefault"><img src="images/ContentDifferent.png" width="28" height="16" alt="<CC>" align="middle"></td>
+                        <td class="DirItemNewer"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;│└</span>tpl_header.php</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;├</span><i class="fa fa-folder-open DirOlderExpanded"></i> css</td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;├</span><i class="fa fa-folder-open DirNewerExpanded"></i> css</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemOlder"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;│└</span>stylesheet_product_finder.css</td>
+                        <td class="DirItemDefault"><img src="images/ContentDifferent.png" width="28" height="16" alt="<CC>" align="middle"></td>
+                        <td class="DirItemNewer"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;│└</span>stylesheet_product_finder.css</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;└</span><i class="fa fa-folder-open DirOrphanExpanded"></i> jscript</td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;├</span><i class="fa fa-folder-open DirOrphanExpanded"></i> jscript</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemOrphan"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├jquery-1.3.2.min.js</span></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;││</span></td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemOrphan"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└</span>jscript_model_year.php</td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;││</span></td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemOrphan"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;│└</span>jscript_product_finder.php</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;├</span><i class="fa fa-folder-open DirOrphanExpanded"></i> sideboxes</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemOrphan"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;│└</span>tpl_product_finder.php</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;└</span><i class="fa fa-folder-open DirOrphanExpanded"></i> templates</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemOrphan"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└</span>tpl_product_finder.php</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><i class="fa fa-folder-open DirOrphanExpanded"></i> YOUR_ADMIN</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">└</span><i class="fa fa-folder-open DirOrphanExpanded"></i> includes</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;├</span><i class="fa fa-folder-open DirOrphanExpanded"></i> auto_loaders</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemOrphan"><span class="text-black">&nbsp;&nbsp;│└</span>config.product_finder.php</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;├</span><i class="fa fa-folder-open DirOrphanExpanded"></i> init_includes</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemOrphan"><span class="text-black">&nbsp;&nbsp;│└</span>init_product_finder.php</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;├</span><i class="fa fa-folder-open DirOrphanExpanded"></i> installers</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;│└</span><i class="fa fa-folder-open DirOrphanExpanded"></i> product_finder</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemOrphan"><span class="text-black">&nbsp;&nbsp;│&nbsp;&nbsp;└</span>1_0_0.php</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;└</span><i class="fa fa-folder-open DirOrphanExpanded"></i> languages</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;└</span><i class="fa fa-folder-open DirOrphanExpanded"></i> english</td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└</span><i class="fa fa-folder-open DirOrphanExpanded"></i> extra_definitions</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemOrphan"><span class="text-black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└</span>product_finder.php</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionEnd">
+                        <td class="DirItemOrphan">modellist.php</td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
             <div class="tab-pane fade" id="setup" role="tabpanel" aria-labelledby="setup-tab">
               <h2>Configuration</h2>
               <p><strong>IMPORTANT</strong><br />You have to tell the code which top-level category to start from.</p>
               <p>In /includes/functions/extra_functions/product_finder_sidebox.php</p>
               <p>around line 56 look for</p>
-              <p><span class="filename">function zen_get_category_tree($parent_id = '</span><span class="warning">99</span><span class="filename">', $category_tree_array = '') {</span></p>
-              <p>The <span class="warning">99</span> is my top-level category, change it to yours.</p>
+              <p><span class="filename">function zen_get_category_tree($parent_id = '</span><span class="text-warning">99</span><span class="filename">', $category_tree_array = '') {</span></p>
+              <p>The <span class="text-warning">99</span> is my top-level category, change it to yours.</p>
               <h2>How to test it</h2>
               <p>You will need a top-level category, then a sub 1, then a sub 2, then sub 3 and then an enabled product in sub 3. <i>Untill there is a product in (or linked to)sub 3 nothing will populate the drop down menus.</i></p>
               <p>Put the correct id for the top level category in </p>
@@ -115,38 +456,143 @@
             </div>
             <div class="tab-pane fade" id="credits" role="tabpanel" aria-labelledby="credits-tab">
               <h2>Version History</h2>
-              <p>v1.0 <br />
-                integrated sidebox version by:
-              </p>
-              <ul>
-                <li>Author: mikestaps, converted from Product Finder v0.91, originally developed by Terranetworks for torvista.</li>
-              </ul>
-
-              <p>v0.92 <br />
-                2011-01-27 added product_finder_sidebox folder<br />
-                product_finder_sidebox folder includes:
-              </p>
-              <ol>
-                <li>all files needed to use product finder as a sidebox</li>
-                <li>seperate readme with examples of sidebox product finder</li></ol>
-              <p>v0.91 2010-09-29</p>
-              <ol>
-                <li>&lt;noscript&gt; GO buttons changed to both .gif (previously one was .jpg other was .png)</li>
-                <li>jscript_model_year.js changed to .php<br />
-                  correction to show breadcrumb elements in the right order on the results page<br />
-                  correction to maintain language when selection changed<br />
-                  correction to allow use of commas in category descriptions</li>
-                <li>modellist.php, correction to allow use of commas in category descriptions</li>
-                <li>readme images changed to show classic template</li>
-                <li>css and layout improved to merge easier into classic template</li>
-              </ol>
-              <p>v0.9 <br />
-                2010-08-05 first upload to Zen Cart community<br />
-              </p>
+              <table>
+                <tr>
+                  <td>Version: </td>
+                  <td>&nbsp;</td>
+                  <td>1.0</td>
+                </tr>
+                <tr>
+                  <td>Release Date: </td>
+                  <td>&nbsp;</td>
+                  <td>20-04-2019</td>
+                </tr>
+                <tr>
+                  <td>Zen Cart Versions: </td>
+                  <td>&nbsp;</td>
+                  <td>1.5.5, 1.5.6</td>
+                </tr>
+                <tr>
+                  <td>Author: </td>
+                  <td>&nbsp;</td>
+                  <td><a href="https://zen4all.nl" target="_blank">Zen4All</a></td>
+                </tr>
+                <tr>
+                  <td>Changes: </td>
+                  <td>&nbsp;</td>
+                  <td>
+                    <ul>
+                      <li>integrated sidebox version</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3">
+                    <hr>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Version: </td>
+                  <td>&nbsp;</td>
+                  <td>0.92</td>
+                </tr>
+                <tr>
+                  <td>Release Date: </td>
+                  <td>&nbsp;</td>
+                  <td>27-01-2019</td>
+                </tr>
+                <tr>
+                  <td>Zen Cart Versions: </td>
+                  <td>&nbsp;</td>
+                  <td>1.3.9</td>
+                </tr>
+                <tr>
+                  <td>Author: </td>
+                  <td>&nbsp;</td>
+                  <td><a href="https://www.zen-cart.com/member.php?u=97171" target="_blank">miketaps</a></td>
+                </tr>
+                <tr>
+                  <td>Changes: </td>
+                  <td>&nbsp;</td>
+                  <td>
+                    <ul>
+                      <li>Added the folder product_finder_sidebox<br>This folder contains all of the files needed to move the product finder form the header to a sidebox.</li>
+                      <li>all files needed to use product finder as a sidebox</li>
+                      <li>seperate readme with examples of sidebox product finder</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3">
+                    <hr>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Version: </td>
+                  <td>&nbsp;</td>
+                  <td>0.91</td>
+                </tr>
+                <tr>
+                  <td>Release Date: </td>
+                  <td>&nbsp;</td>
+                  <td>29-09-2010</td>
+                </tr>
+                <tr>
+                  <td>Zen Cart Versions: </td>
+                  <td>&nbsp;</td>
+                  <td>1.3.9</td>
+                </tr>
+                <tr>
+                  <td>Author: </td>
+                  <td>&nbsp;</td>
+                  <td><a href="https://www.zen-cart.com/member.php?u=42350" target="_blank">Torvista</a></td>
+                </tr>
+                <tr>
+                  <td>Changes: </td>
+                  <td>&nbsp;</td>
+                  <td>
+                    <ul>
+                      <li>&lt;noscript&gt; GO buttons changed to both .gif (previously one was .jpg other was .png)</li>
+                      <li>jscript_model_year.js changed to .php</li>
+                      <li>correction to show breadcrumb elements in the right order on the results page</li>
+                      <li>correction to maintain language when selection changed</li>
+                      <li>correction to allow use of commas in category descriptions</li>
+                      <li>modellist.php, correction to allow use of commas in category descriptions</li>
+                      <li>readme images changed to show classic template</li>
+                      <li>css and layout improved to merge easier into classic template</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3">
+                    <hr>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Version: </td>
+                  <td>&nbsp;</td>
+                  <td>0.9</td>
+                </tr>
+                <tr>
+                  <td>Release Date: </td>
+                  <td>&nbsp;</td>
+                  <td>2010-08-05 first upload to Zen Cart community</td>
+                </tr>
+                <tr>
+                  <td>Zen Cart Versions: </td>
+                  <td>&nbsp;</td>
+                  <td>1.3.9</td>
+                </tr>
+                <tr>
+                  <td>Author: </td>
+                  <td>&nbsp;</td>
+                  <td><a href="https://www.zen-cart.com/member.php?u=42350" target="_blank">Torvista</a></td>
+                </tr>
+              </table>
             </div>
             <div class="tab-pane fade" id="license" role="tabpanel" aria-labelledby="license-tab">
               <ul>
-                <li>License: GPL 2.0 as per included license.txt</li>
+                <li>License: GPL 2.0 as per included <a href="../LICENSE" target="_blank">LICENSE</a></li>
                 <li>Author: originally developed by Terranetworks for torvista.</li>
                 <li>Version: 0.91 2010-09-29</li>
                 <li>Support Thread: <a href="http://www.zen-cart.com/forum/showthread.php?p=918403" target="_blank">http://www.zen-cart.com/forum/showthread.php?p=918403</a></li>
@@ -154,7 +600,7 @@
             </div>
           </div>
         </div>
-        <div class="card-footer text-sm-center">Copyright 2019 <a href="https://zen4all.nl">Zen4All</a></div>
+        <div class="card-footer text-sm-center">Copyright 2019 <a href="https://zen4all.nl" target="_blank">Zen4All</a></div>
       </div>
     </div>
     <script src="jscript/jquery-3.3.1.min.js"></script>

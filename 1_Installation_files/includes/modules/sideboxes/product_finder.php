@@ -1,14 +1,12 @@
 <?php
 
-/**
- * blank sidebox - allows a blank sidebox to be added to your site
- *
- * @package templateSystem
- * @copyright 2007 Kuroi Web Design
- * @copyright Portions Copyright 2003-2007 Zen Cart Development Team
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: blank_sidebox.php 2007-05-26 kuroi $
+/* Product Finder module
+ * @version 1.0.0
+ * @author Zen4All
+ * @copyright (c) 2014-2019, Zen4All
+ * @license http://www.gnu.org/licenses/gpl.txt GNU General Public License V2.0
  */
+
 // test if box should display
 $show_product_finder = true;
 
