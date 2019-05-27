@@ -9,15 +9,13 @@
  * | available through the world-wide-web at the following url:           |
  * | http://www.zen-cart.com/license/2_0.txt.                             |
  * +----------------------------------------------------------------------+
- *  $Id: product.finder.php 2015-10-02
+ * @version $Id: product_finder.php 2019-05-25
  */
-
-// Product Finder Definitions 
 define('PF_TEXT_DD1', 'Make:');
 define('PF_TEXT_DD2', 'Model:');
 define('PF_TEXT_DD3', 'Year:');
 define('PF_TEXT_PLEASE_SELECT', 'Please Select');
 define('PF_TEXT_TITLE', '<strong>Show Products for...</strong>');
-define('PF_NOSCRIPT_SUBMIT', 'go.gif'); //in templates/TEMPLATE/buttons/english/
+define('PF_NOSCRIPT_SUBMIT', 'pf_button_noscript.gif');//in templates/YOUR_TEMPLATE/buttons/english/
 define('PF_NOSCRIPT_SUBMIT_ALT', 'Go');
-define('BOX_HEADING_PRODUCT_FINDER', 'Shop By Bike');
+define('BOX_HEADING_PRODUCT_FINDER', 'Product Finder');
