@@ -57,7 +57,9 @@ echo '<div class="header Fixed"><a href="#menu" title="Menu"><i class="fa fa-bar
   <ul>
     <li><?php echo '<a href="' . HTTP_SERVER . DIR_WS_CATALOG . '">'; ?><i class="fa fa-home" title="Home"></i></a></li>
     <li><a href="#top"><i class="fa fa-arrow-circle-up" title="Back to Top"></i></a></li>
-<?php if (!empty($_SESSION['customer_id'])) { ?>
+<?php
+    if (zen_is_logged_in() && !zen_in_guest_checkout()) {
+?>
     <li><a href="<?php echo zen_href_link(FILENAME_LOGOFF, '', 'SSL'); ?>"><i class="fa fa-sign-out" title="Log Off"></i></a></li>
 <?php if ($_SESSION['cart']->count_contents() != 0) { ?>
     <li><a href="<?php echo zen_href_link(FILENAME_ACCOUNT, '', 'SSL'); ?>"><i class="fa fa-user" title="My Account"></i></a></li>
@@ -95,7 +97,9 @@ echo '<div class="header Fixed"><a href="#menu" title="Menu"><i class="fa fa-bar
     <ul>
 <li class="hide"><a href="#top"><i class="fa fa-arrow-circle-up" title="Back to Top"></i></a></li>
     <li><?php echo '<a href="' . HTTP_SERVER . DIR_WS_CATALOG . '">'; ?><?php echo HEADER_TITLE_CATALOG; ?></a></li>
-<?php if ($_SESSION['customer_id']) { ?>
+<?php
+        if (zen_is_logged_in() && !zen_in_guest_checkout()) {
+?>
     <li><a href="<?php echo zen_href_link(FILENAME_LOGOFF, '', 'SSL'); ?>"><?php echo HEADER_TITLE_LOGOFF; ?></a></li>
 <?php if ($_SESSION['cart']->count_contents() != 0) { ?>
 <li><a href="<?php echo zen_href_link(FILENAME_ACCOUNT, '', 'SSL'); ?>"><?php echo HEADER_TITLE_MY_ACCOUNT; ?></a></li>
@@ -129,7 +133,9 @@ echo '<div class="header Fixed"><a href="#menu" title="Menu"><i class="fa fa-bar
 <div id="navMain">
   <ul class="back">
     <li><?php echo '<a href="' . HTTP_SERVER . DIR_WS_CATALOG . '">'; ?><?php echo HEADER_TITLE_CATALOG; ?></a></li>
-<?php if (!empty($_SESSION['customer_id'])) { ?>
+<?php
+    if (zen_is_logged_in() && !zen_in_guest_checkout()) {
+?>
     <li><a href="<?php echo zen_href_link(FILENAME_LOGOFF, '', 'SSL'); ?>"><?php echo HEADER_TITLE_LOGOFF; ?></a></li>
 <?php if ($_SESSION['cart']->count_contents() != 0) { ?>
     <li><a href="<?php echo zen_href_link(FILENAME_ACCOUNT, '', 'SSL'); ?>"><?php echo HEADER_TITLE_MY_ACCOUNT; ?></a></li>
@@ -211,11 +217,11 @@ echo '<div class="header Fixed"><a href="#menu" title="Menu"><i class="fa fa-bar
 <?php } ?>
 <!--eof header ezpage links-->
 </div>
-<!-- BOF Product Finder -->
-  <?php
-  if (defined('PRODUCT_FINDER_ENABLE') && PRODUCT_FINDER_ENABLE == 'true') {
-    require ($template->get_template_dir('tpl_product_finder.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_product_finder.php');
-  }
-  ?>
-<!-- EOF Product Finder -->
+  <!-- BOF Product Finder 1 of 1 -->
+  <?php if (defined('PRODUCT_FINDER_TEMPLATE_ENABLE') && PRODUCT_FINDER_TEMPLATE_ENABLE == 'true') { ?>
+    <div id="pfTemplate">
+        <?php include(DIR_WS_MODULES . zen_get_module_directory('product_finder.php')); ?>
+    </div>
+  <?php } ?>
+  <!-- EOF Product Finder 1 of 1 -->
 <?php } ?>
