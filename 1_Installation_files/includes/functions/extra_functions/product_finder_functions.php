@@ -1,6 +1,7 @@
 <?php
 
-/** Product Finder mod
+/**
+ * Product Finder mod
  * /includes/functions/extra_functions/product_finder.php
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: product_finder_functions.php 2019-05-25
@@ -24,8 +25,8 @@ function pf_get_subcategories($parent_id)
                                    INNER JOIN " . TABLE_CATEGORIES_DESCRIPTION . " cd ON cd.categories_id = c.categories_id
                                    AND c.categories_status = 1
                                    AND cd.language_id = " . (int)$_SESSION['languages_id'] . "
-                                  AND c.parent_id = " . (int)$parent_id . "
-                                  ORDER BY cd.categories_name");
+                                   AND c.parent_id = " . (int)$parent_id . "
+                                   ORDER BY cd.categories_name");
 
     foreach ($subcategories as $subcategory) {
       $subcategory_array[] = array(
