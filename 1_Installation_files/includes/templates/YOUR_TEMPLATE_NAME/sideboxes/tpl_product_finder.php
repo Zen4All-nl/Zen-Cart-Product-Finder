@@ -1,5 +1,6 @@
 <?php
-/* Product Finder module
+/**
+ *  Product Finder module
  * includes/templates/YOURTEMPLATE/sideboxes/tpl_product_finder.php
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: product_finder.php 2019-05-25
