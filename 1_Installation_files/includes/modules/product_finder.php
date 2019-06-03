@@ -3,7 +3,7 @@
  * Product Finder module
  * includes/modules/product_finder.php
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: product_finder.php 2019-05-25
+ * @version $Id: product_finder.php 03-06-2019
  */
 $pf_base_category = (int)PRODUCT_FINDER_PARENT_ID; //USER defined base category
 $pf_category_depth = (int)PRODUCT_FINDER_CATEGORY_DEPTH; //USER defined base category
