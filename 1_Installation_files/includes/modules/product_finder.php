@@ -3,10 +3,10 @@
  * Product Finder module
  * includes/modules/product_finder.php
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: product_finder.php 03-06-2019
+ * @version $Id: product_finder.php 16-07-2019
  */
 $pf_base_category = (int)PRODUCT_FINDER_PARENT_ID; //USER defined base category
-$pf_category_depth = (int)PRODUCT_FINDER_CATEGORY_DEPTH; //USER defined base category
+$pf_category_depth = (int)PRODUCT_FINDER_CATEGORY_DEPTH; //USER defined category depth
 //Note that most of this convoluted POST and GET coding is purely to allow PF to work without javascript...and then behave logically when the dropdowns are changed in various non-logical orders
 //noscript
 if (isset($_GET['pf_dd1_prev'])) {//this page load is a result of a complete PF selection and so was a redirect with GET parameters, and should be in a category
@@ -20,9 +20,9 @@ if (isset($_GET['pf_dd1_prev'])) {//this page load is a result of a complete PF 
   $prev_dd3 = (int)$_POST['pf_dd3_prev'];
 }
 //noscript, get current noscript POST selections
-$post_dd1 = isset($_POST['pf_dd1']) && $_POST['pf_dd1'] > 0 ? (int)$_POST['pf_dd1'] : -1;
-$post_dd2 = isset($_POST['pf_dd2']) && $_POST['pf_dd2'] > 0 ? (int)$_POST['pf_dd2'] : -1;
-$post_dd3 = isset($_POST['pf_dd3']) && $_POST['pf_dd3'] > 0 ? (int)$_POST['pf_dd3'] : -1;
+$post_dd1 = !empty($_POST['pf_dd1']) ? (int)$_POST['pf_dd1'] : -1;
+$post_dd2 = !empty($_POST['pf_dd2']) ? (int)$_POST['pf_dd2'] : -1;
+$post_dd3 = !empty($_POST['pf_dd3']) ? (int)$_POST['pf_dd3'] : -1;
 
 if (($post_dd1 == $prev_dd1) && ($post_dd2 == $prev_dd2) && ($post_dd3 > 0)) {//noscript, a complete NEW selection has been made, so go to that category
   $cp = $pf_base_category . '_' . $post_dd1 . '_' . $post_dd2 . '_' . $post_dd3;
@@ -36,7 +36,10 @@ if (($post_dd1 == $prev_dd1) && ($post_dd2 == $prev_dd2) && ($post_dd3 > 0)) {//
 
 //get current page location if in a category
 if (isset($cPath) && $cPath != '') {//$cPath is only set on a category/product page
-  $pf_cPaths = explode('_', $cPath);
+    $pf_cPaths = explode("_", $cPath);
+    if ($pf_cPaths[0] != $pf_base_category) {
+        $pf_cPaths = '';
+    }
 } else {
   $pf_cPaths = ''; //for php notice undefined variable
 }
@@ -44,7 +47,7 @@ if (isset($cPath) && $cPath != '') {//$cPath is only set on a category/product p
 //Pre-populate each dropdown if it reflects the current subcategory (get value from $cPath) or noscript (get values from POST)
 if ($post_dd1 > 0) {
   $pf_dd1_selected = $post_dd1;
-} elseif ($pf_cPaths['1'] != '') {
+} elseif (is_array($pf_cPaths) && $pf_cPaths['1'] != '') {
   $pf_dd1_selected = (int)$pf_cPaths['1'];
 } else {
   $pf_dd1_selected = -1; //Please Select
@@ -52,7 +55,7 @@ if ($post_dd1 > 0) {
 
 if ($post_dd2 > 0) {
   $pf_dd2_selected = $post_dd2;
-} elseif ($pf_cPaths['2'] != '') {
+} elseif (is_array($pf_cPaths) && $pf_cPaths['2'] != '') {
   $pf_dd2_selected = (int)$pf_cPaths['2'];
 } else {
   $pf_dd2_selected = -1;
@@ -60,7 +63,7 @@ if ($post_dd2 > 0) {
 
 if ($post_dd3 > 0) {
   $pf_dd3_selected = $post_dd3;
-} elseif ($pf_cPaths['3'] != '') {
+} elseif (is_array($pf_cPaths) && $pf_cPaths['3'] != '') {
   $pf_dd3_selected = (int)$pf_cPaths['3'];
 } else {
   $pf_dd3_selected = -1;
