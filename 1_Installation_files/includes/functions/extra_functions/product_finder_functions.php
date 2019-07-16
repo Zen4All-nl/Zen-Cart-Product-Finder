@@ -2,7 +2,7 @@
 
 /**
  * Product Finder mod
- * /includes/functions/extra_functions/product_finder.php
+ * /includes/functions/extra_functions/product_finder_functions.php
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: product_finder_functions.php 2019-05-25
  */
