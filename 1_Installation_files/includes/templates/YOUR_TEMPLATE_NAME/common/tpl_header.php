@@ -218,7 +218,7 @@ echo '<div class="header Fixed"><a href="#menu" title="Menu"><i class="fa fa-bar
 <!--eof header ezpage links-->
 </div>
   <!-- BOF Product Finder 1 of 1 -->
-  <?php if (defined('PRODUCT_FINDER_TEMPLATE_ENABLE') && PRODUCT_FINDER_TEMPLATE_ENABLE == 'true') { ?>
+  <?php if (defined('PRODUCT_FINDER_TEMPLATE_ENABLE') && (PRODUCT_FINDER_TEMPLATE_ENABLE == 'true' && PRODUCT_FINDER_PARENT_ID != '')) { ?>
     <div id="pfTemplate">
         <?php include(DIR_WS_MODULES . zen_get_module_directory('product_finder.php')); ?>
     </div>
