@@ -4,7 +4,7 @@
  * Product Finder module
  * @version 1.1.0
  * @author Zen4All
- * @updated by TorVista & Zen4All
+ * @updated by Torvista & Zen4All
  * @copyright (c) 2014-2019, Zen4All
  * @license http://www.gnu.org/licenses/gpl.txt GNU General Public License V2.0
  * @version $Id: zcAjaxProductFinderCats.php 03-06-2019
