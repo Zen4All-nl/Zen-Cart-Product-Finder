@@ -77,7 +77,7 @@ $pf_dd1_array = pf_get_subcategories($pf_base_category); //build the array for d
 $pf_dd2_array = pf_get_subcategories($pf_dd1_selected); //build the array for dropdown2
 $pf_dd3_array = pf_get_subcategories($pf_dd2_selected); //build the array for dropdown3
 
-$cp = isset($cPath) && $cPath != '' ? 'cPath=' . $cPath : ''; //if on a category page, stay there until a complete new selection made (redirect). If on another page, stay there too!
+$cp = isset($cPath) && $cPath !== '' ? 'cPath=' . $cPath : ''; //if on a category page, stay there until a complete new selection made (redirect). If on another page, stay there too!
 echo zen_draw_form('productFinderform', zen_href_link($_GET['main_page'], $cp), 'post', 'id="productFinderform"'); //this action is overridden when JS in use
 //pass current states so code can determine what has changed on each submit and act according, or not.
 echo zen_draw_hidden_field('pf_dd1_prev', $pf_dd1_selected);
@@ -123,5 +123,5 @@ echo zen_draw_hidden_field('pf_dd3_prev', $pf_dd3_selected);
   </ul>
   <?php echo '</form>'; ?>
 </div>
-<!--bof product finder -->
+<!--eof product finder -->
 
