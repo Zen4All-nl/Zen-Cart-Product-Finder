@@ -85,7 +85,7 @@ echo zen_draw_hidden_field('pf_dd2_prev', $pf_dd2_selected);
 echo zen_draw_hidden_field('pf_dd3_prev', $pf_dd3_selected);
 ?>
 <!--bof product finder -->
-<div id="productFinder"
+<div id="productFinder">
      <noscript>
        <?php echo zen_draw_hidden_field('js_disabled', 'true'); ?>
   </noscript>
